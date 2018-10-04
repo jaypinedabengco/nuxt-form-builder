@@ -16,9 +16,6 @@ export default {
 </script>
 
 <style scoped>
-section {
-  border: 1px solid;
-}
 .empty {
   height: 50px;
   width: 100%;

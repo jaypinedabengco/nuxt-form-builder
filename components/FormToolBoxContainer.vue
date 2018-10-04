@@ -39,6 +39,13 @@ export default {
                 type: 'container',
                 children: []
             }, {
+                label: 'Container (Horizontal Children)',
+                type: 'container',
+                options: {
+                    childrenOrientation: 'horizontal'
+                },
+                children: []
+            }, {
                 label: 'Text',
                 type: 'text'
             }]
@@ -46,9 +53,30 @@ export default {
     },
     methods: {
         onClone (field) {
-            console.log('field', field)
             let clonedField = JSON.parse(JSON.stringify(field))
+            clonedField._field_id = this.createRandomFieldId()
             return clonedField
+        },
+        createRandomFieldId () {
+            let s4 = () => {
+                return Math.floor((1 + Math.random()) * 0x10000)
+                    .toString(16)
+                    .substring(1)
+            }
+            return (
+                s4() +
+                s4() +
+                '-' +
+                s4() +
+                '-' +
+                s4() +
+                '-' +
+                s4() +
+                '-' +
+                s4() +
+                s4() +
+                s4()
+            )
         }
     }
 }

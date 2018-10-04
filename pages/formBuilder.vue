@@ -10,6 +10,7 @@
         section.section            
             div.container
                 h1 Contents
+
 </template>
 
 <script>
