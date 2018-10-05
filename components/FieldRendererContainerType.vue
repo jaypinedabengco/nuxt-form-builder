@@ -1,5 +1,5 @@
 <template lang="pug">
-    section.container-type(:class="{empty: noChildren, 'edit-mode': editMode}")
+    section.container-type(:class="{empty: noChildren, 'edit-mode': editMode, 'horizontal-view': isChildrenHorizontal}")
         draggable.draggable-content( 
                 v-if="editMode" 
                 v-model="fieldDefinition.children" 
@@ -42,7 +42,7 @@ export default {
             const { options } = this.fieldDefinition
             const isHorizontalView = (options && options.childrenOrientation === 'horizontal')
             return {
-                'columns': isHorizontalView
+                'column': isHorizontalView
             }
         }
     },
@@ -62,21 +62,27 @@ export default {
 
 <style scoped>
 .container-type .draggable-content {
-  min-height: 30px;
-  min-width: 30px;
+  min-height: 50px;
+  min-width: 50px;
 }
 
-section.edit-mode {
-  border: 1px solid;
+.container-type.edit-mode {
+  border: 1px solid green;
   padding: 5px;
   margin: 5px;
 }
-section.edit-mode.empty {
+
+.container-type.edit-mode.empty {
   border-style: dashed;
 }
-section.edit-mode:hover {
+
+.container-type.edit-mode:hover {
   border-width: 2px;
-  border-color: red;
 }
+
+.container-type.edit-mode.horizontal-view {
+    border-color:blue;
+}
+
 </style>
 
