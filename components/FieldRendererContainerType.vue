@@ -1,11 +1,10 @@
 <template lang="pug">
     section.container-type(:class="{empty: noChildren, 'edit-mode': editMode, 'horizontal-view': isChildrenHorizontal}")
-        draggable.draggable-content( 
+        draggable.draggable-content(
                 v-if="editMode" 
                 v-model="fieldDefinition.children" 
-                :options="{group:editModeDraggableGroupName}" 
-                :class="orientationParentClass" 
-                @filter="onElementDraggedTo")
+                :options="draggableOption" 
+                :class="orientationParentClass")
             slot(name="child-container" :class="orientationChildClass")
         section.container-content(v-else :class="orientationParentClass")
             slot(name="child-container" :class="orientationChildClass")
@@ -13,6 +12,7 @@
 <script>
 import draggable from 'vuedraggable'
 import FieldDefinitionMixins from '@/mixins/FieldDefinitionMixins'
+import { mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -20,6 +20,15 @@ export default {
     },
     mixins: [FieldDefinitionMixins],
     computed: {
+        ...mapGetters('forms/', {
+            draggableGroupName: 'getDraggableEditGroupName'
+        }),
+        draggableOption () {
+            const options = {
+                group: this.draggableGroupName
+            }
+            return options
+        },
         noChildren () {
             const { children } = this.fieldDefinition
             return (!(children instanceof Array) || children.length === 0)
@@ -81,8 +90,7 @@ export default {
 }
 
 .container-type.edit-mode.horizontal-view {
-    border-color:blue;
+  border-color: blue;
 }
-
 </style>
 

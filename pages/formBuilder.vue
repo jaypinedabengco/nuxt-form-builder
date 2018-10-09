@@ -21,7 +21,7 @@
 import draggable from 'vuedraggable'
 import FormToolBoxContainer from '@/components/FormToolBoxContainer'
 import FormRendererEditMode from '@/components/FormRendererEditMode'
-import { mapActions,  mapState } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
     components: {
@@ -29,16 +29,23 @@ export default {
         'form-toolbox-container': FormToolBoxContainer,
         'form-renderer-edit-mode': FormRendererEditMode
     },
+    data () {
+        return {
+            formDefinitionForEdit: null
+        }
+    },
     computed: {
-        ...mapState('forms/', {
-            formBeingEditted: (state) => {
-                return {
-                    get() {
-                        
-                    }
-                }
-            }
-        })
+        ...mapGetters('forms/', ['cloneOfFormBeingEditted'])
+    },
+    watch: {
+        cloneOfFormBeingEditted (value) {
+            this.formDefinitionForEdit = value
+        },
+        formDefinitionForEdit: {
+            handler (value) {
+                console.log('change on child level', value)
+            }, deep: true
+        }
     },
     methods: {
         ...mapActions('forms/', {

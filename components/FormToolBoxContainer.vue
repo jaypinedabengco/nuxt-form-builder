@@ -28,7 +28,7 @@ export default {
             draggableGroupName: 'getDraggableEditGroupName'
         }),
         draggableOptions () {
-            return {
+            const options = {
                 group: {
                     name: this.draggableGroupName,
                     pull: 'clone',
@@ -36,6 +36,7 @@ export default {
                 },
                 sort: false
             }
+            return options
         }
     },
     methods: {
