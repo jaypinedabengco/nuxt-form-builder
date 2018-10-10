@@ -25,12 +25,13 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
     components: {
-        draggable: draggable,
+        'draggable': draggable,
         'form-toolbox-container': FormToolBoxContainer,
         'form-renderer-edit-mode': FormRendererEditMode
     },
     data () {
         return {
+            // NOTE: ADD draft or ongoing form, used for temporary caching....
             formDefinitionForEdit: null
         }
     },

@@ -1,0 +1,23 @@
+[
+  {
+    "label": "Container",
+    "type": "container",
+    "children": []
+  },
+  {
+    "label": "Container (Horizontal Children)",
+    "type": "container",
+    "options": {
+      "childrenOrientation": "horizontal"
+    },
+    "children": []
+  },
+  {
+    "label": "Text",
+    "type": "text"
+  },
+  {
+    "label": "Label",
+    "type": "label"
+  }
+]

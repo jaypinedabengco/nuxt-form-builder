@@ -1,5 +1,6 @@
 import FormUtil from '@/utils/FormUtil'
 import ObjectUtil from '@/utils/ObjectUtil'
+import HARD_CODED_FIELD_OPTIONS from '@/sample/json/field-options.json'
 
 export const MUTATION_TYPES = {
   ADD_TO_LIST: 'ADD_TO_LIST',
@@ -15,37 +16,18 @@ export const MUTATION_TYPES = {
 // hard coded, expected that
 // these should be provided via
 // api
-const HARD_CODED_FORM_FIELD_OPTIONS = [
-  {
-    label: 'Container',
-    type: 'container',
-    children: []
-  },
-  {
-    label: 'Container (Horizontal Children)',
-    type: 'container',
-    options: {
-      childrenOrientation: 'horizontal'
-    },
-    children: []
-  },
-  {
-    label: 'Text',
-    type: 'text'
-  },
-  {
-    label: 'Label',
-    type: 'label'
-  }
-]
+const fieldOptions = HARD_CODED_FIELD_OPTIONS
 
-// states
-export const state = () => ({
+const DEFAULT_STATE = {
   list: [],
   selectedFormId: null,
+  formEditDraft: null,
   draggableEditGroupName: 'form-builder',
-  formFieldOptions: HARD_CODED_FORM_FIELD_OPTIONS
-})
+  formFieldOptions: fieldOptions
+}
+
+// states
+export const state = () => (DEFAULT_STATE)
 
 // mutations
 export const mutations = {
